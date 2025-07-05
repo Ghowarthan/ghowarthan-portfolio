@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghowarthan K. - Mechanical Engineering Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .orbitron { font-family: 'Orbitron', monospace; }
+        .inter { font-family: 'Inter', sans-serif; }
+        
+        .gear-animation {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        
+        .blueprint-bg {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+                linear-gradient(90deg, transparent 98%, rgba(0, 150, 255, 0.3) 100%),
+                linear-gradient(0deg, transparent 98%, rgba(0, 150, 255, 0.3) 100%);
+            background-size: 200px 200px, 200px 200px, 20px 20px, 20px 20px;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 150, 255, 0.2);
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, #00a2ff, #0066cc);
+            height: 6px;
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        
+        .timeline-item {
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #00a2ff, transparent);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 10px;
+            width: 10px;
+            height: 10px;
+            background: #00a2ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white inter">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="orbitron text-xl font-bold text-blue-400">
+                    GK
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-blue-400 transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                    <a href="#internships" class="text-gray-300 hover:text-blue-400 transition-colors">Experience</a>
+                    <a href="#certifications" class="text-gray-300 hover:text-blue-400 transition-colors">Certifications</a>
+                    <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-blue-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-300 hover:text-blue-400">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-300 hover:text-blue-400">About</a>
+                <a href="#skills" class="block px-3 py-2 text-gray-300 hover:text-blue-400">Skills</a>
+                <a href="#projects" class="block px-3 py-2 text-gray-300 hover:text-blue-400">Projects</a>
+                <a href="#internships" class="block px-3 py-2 text-gray-300 hover:text-blue-400">Experience</a>
+                <a href="#certifications" class="block px-3 py-2 text-gray-300 hover:text-blue-400">Certifications</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-300 hover:text-blue-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen gradient-bg blueprint-bg flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Animated Gears -->
+            <div class="absolute top-20 left-20 text-blue-400/20 text-6xl gear-animation">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="absolute top-40 right-20 text-blue-400/20 text-4xl gear-animation" style="animation-direction: reverse;">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="absolute bottom-40 left-1/4 text-blue-400/20 text-5xl gear-animation">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+        
+        <div class="text-center z-10 px-4">
+            <div class="floating">
+                <h1 class="orbitron text-5xl md:text-7xl font-bold text-white mb-4">
+                    Ghowarthan K.
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-400 mb-6">
+                    Mechanical Engineering Student & Aspiring Engineering Manager
+                </p>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+                    Passionate about Robotics, Product Development, and AI/ML. 
+                    Transforming ideas into innovative engineering solutions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        Get In Touch
+                    </a>
+                    <a href="#" class="border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-blue-400 text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl font-bold text-white mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-blue-400">Background</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        I am a passionate mechanical engineering student with a keen interest in robotics, 
+                        product development, and artificial intelligence. My goal is to become an Engineering 
+                        Manager who can bridge the gap between technical innovation and business strategy.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        Based in Chennai, India, I specialize in CAD modeling, finite element analysis, 
+                        and project management. I believe in the power of interdisciplinary collaboration 
+                        and continuous learning to solve complex engineering challenges.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-blue-400"></i>
+                            <span class="text-gray-300">Chennai, India</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-graduation-cap text-blue-400"></i>
+                            <span class="text-gray-300">Mechanical Engineering</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-600 to-purple-600 p-1 rounded-2xl">
+                        <div class="bg-gray-800 rounded-2xl p-8 text-center">
+                            <div class="w-48 h-48 mx-auto bg-gray-700 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-user text-6xl text-gray-400"></i>
+                            </div>
+                            <h4 class="text-xl font-semibold text-white mb-2">Ghowarthan K.</h4>
+                            <p class="text-blue-400">Engineering Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl font-bold text-white mb-4">Skills & Expertise</h2>
+                <div class="w-24 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-8">Technical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">SolidWorks</span>
+                                <span class="text-blue-400">90%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">AutoCAD</span>
+                                <span class="text-blue-400">85%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">ANSYS</span>
+                                <span class="text-blue-400">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">MATLAB</span>
+                                <span class="text-blue-400">75%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-8">Soft Skills</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-800 p-4 rounded-lg card-hover">
+                            <i class="fas fa-tasks text-blue-400 text-2xl mb-3"></i>
+                            <h4 class="font-semibold text-white mb-2">Project Management</h4>
+                            <p class="text-gray-400 text-sm">Strategic planning and execution</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg card-hover">
+                            <i class="fas fa-lightbulb text-blue-400 text-2xl mb-3"></i>
+                            <h4 class="font-semibold text-white mb-2">Problem Solving</h4>
+                            <p class="text-gray-400 text-sm">Analytical thinking approach</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg card-hover">
+                            <i class="fas fa-comments text-blue-400 text-2xl mb-3"></i>
+                            <h4 class="font-semibold text-white mb-2">Communication</h4>
+                            <p class="text-gray-400 text-sm">Clear and effective communication</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg card-hover">
+                            <i class="fas fa-brain text-blue-400 text-2xl mb-3"></i>
+                            <h4 class="font-semibold text-white mb-2">Lateral Thinking</h4>
+                            <p class="text-gray-400 text-sm">Creative problem solving</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl font-bold text-white mb-4">Featured Projects</h2>
+                <div class="w-24 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- RFID Car Ignition System -->
+                <div class="bg-gray-900 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-car text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-white">RFID-Based Car Ignition System</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Developed a secure car startup system using RFID technology for enhanced vehicle security. 
+                        The system prevents unauthorized access and provides a modern alternative to traditional keys.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">RFID</span>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Embedded Systems</span>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Security</span>
+                    </div>
+                </div>
+                
+                <!-- Bio Composite Material -->
+                <div class="bg-gray-900 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-leaf text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-white">Bio Composite Material Development</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Research project focused on creating lightweight engineering materials using snail shell 
+                        particulates. This sustainable approach offers potential applications in automotive and 
+                        aerospace industries.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Materials Science</span>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Sustainability</span>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Research</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section id="internships" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl font-bold text-white mb-4">Professional Experience</h2>
+                <div class="w-24 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="timeline-item pl-8">
+                    <div class="bg-gray-800 p-6 rounded-lg card-hover">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-2">Engineering Intern</h3>
+                                <p class="text-blue-400 mb-2">Company Name</p>
+                                <p class="text-gray-300 mb-4">
+                                    Gained hands-on experience in product development and engineering processes. 
+                                    Worked on real-world projects involving CAD modeling and analysis.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    <span>2023 - Present</span>
+                                </div>
+                            </div>
+                            <div class="w-16 h-16 bg-gray-700 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-building text-2xl text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item pl-8">
+                    <div class="bg-gray-800 p-6 rounded-lg card-hover">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-2">Research Assistant</h3>
+                                <p class="text-blue-400 mb-2">University Research Lab</p>
+                                <p class="text-gray-300 mb-4">
+                                    Conducted research on bio-composite materials and sustainable engineering solutions. 
+                                    Collaborated with faculty on innovative material development projects.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    <span>2022 - 2023</span>
+                                </div>
+                            </div>
+                            <div class="w-16 h-16 bg-gray-700 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-flask text-2xl text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl font-bold text-white mb-4">Certifications & Workshops</h2>
+                <div class="w-24 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-900 p-6 rounded-lg card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-google text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-white">Google Project Management</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm">Professional certification in project management methodologies</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-white">Business Analysis</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm">Comprehensive training in business analysis techniques</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-calculator text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-white">MATLAB</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm">Advanced computational and mathematical modeling</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-cog text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-white">IC Engines & EV Workshop</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm">Hands-on experience with internal combustion and electric vehicles</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg card-hover border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-drone text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-white">Drone Workshop</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm">Aerial robotics and unmanned vehicle systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl font-bold text-white mb-4">Get In Touch</h2>
+                <div class="w-24 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-8">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Email</h4>
+                                <a href="mailto:kghowarthan@gmail.com" class="text-blue-400 hover:text-blue-300">kghowarthan@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Phone</h4>
+                                <a href="tel:+918610138114" class="text-blue-400 hover:text-blue-300">+91-8610138114</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Location</h4>
+                                <p class="text-gray-300">Chennai, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-globe text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Portfolio</h4>
+                                <a href="https://bit.ly/3XSik2t" target="_blank" class="text-blue-400 hover:text-blue-300">bit.ly/3XSik2t</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-8">Connect With Me</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="#" class="bg-gray-800 p-4 rounded-lg card-hover text-center">
+                            <i class="fab fa-linkedin text-blue-400 text-2xl mb-2"></i>
+                            <p class="text-white font-semibold">LinkedIn</p>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-4 rounded-lg card-hover text-center">
+                            <i class="fab fa-github text-blue-400 text-2xl mb-2"></i>
+                            <p class="text-white font-semibold">GitHub</p>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="#" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8 border-t border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">
+                © 2024 Ghowarthan K. All rights reserved. | Designed with ❤️ for Engineering Excellence
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
